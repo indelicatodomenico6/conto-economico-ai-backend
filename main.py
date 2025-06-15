@@ -23,8 +23,7 @@ app.config['JWT_SECRET_KEY'] = 'jwt-secret-string-change-in-production'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/database.db'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'instance', 'database.db')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
