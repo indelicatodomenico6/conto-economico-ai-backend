@@ -25,6 +25,12 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 # Database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
+# Crea il database se non esiste
+with app.app_context():
+    db.create_all()
+
 
 # Email (configurazione di base, da personalizzare in produzione)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
